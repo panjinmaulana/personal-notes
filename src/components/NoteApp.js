@@ -1,17 +1,15 @@
 import React from "react";
-import { getInitialData, showFormattedDate } from '../utils/index';
 import NoteHeader from "./NoteHeader";
 import NoteBody from "./NoteBody";
 
-function PersonalNotesApp() {
-    const notes = getInitialData();
-
+function NoteApp() {
     return (
         <>
             <NoteHeader />
-            <NoteBody notes={notes} showFormattedDate={showFormattedDate} />
+            <NoteBody />
         </>
     );
+
 };
 
-export default PersonalNotesApp;
+export default NoteApp;
