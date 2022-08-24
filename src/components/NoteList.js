@@ -3,7 +3,7 @@ import NoteItemAction from "./NoteItemAction";
 import NoteItemContent from "./NoteItemContent";
 import { showFormattedDate } from "../utils/index";
 
-function NoteList({ notes, onDelete }) {
+function NoteList({ notes, onDelete, onArchive }) {
     return (
         <div className="notes-list">
             {notes.map((note) =>
@@ -15,6 +15,7 @@ function NoteList({ notes, onDelete }) {
                     <NoteItemAction
                         id={note.id}
                         onDelete={onDelete}
+                        onArchive={onArchive}
                     />
                 </div>)}
         </div>

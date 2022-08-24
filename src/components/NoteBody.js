@@ -10,9 +10,11 @@ class NoteBody extends React.Component {
 
         this.state = {
             notes: getInitialData(),
+            archivedNotes: [],
         };
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
+        this.onArchiveHandler = this.onArchiveHandler.bind(this);
     };
 
     onDeleteHandler(id) {
@@ -20,33 +22,47 @@ class NoteBody extends React.Component {
         this.setState({ notes });
     };
 
+    onArchiveHandler(id) {
+        const archivedNotes = this.state.notes
+            .filter(note => note.id === id)
+            .map((note) => {
+                return { ...note, archived: true }
+            });
+
+        this.setState((previousState) => {
+            return {
+                archivedNotes: [...previousState.archivedNotes, ...archivedNotes],
+            };
+        });
+        
+        this.onDeleteHandler(id);
+    };
+
     render() {
         return (
             <div className="note-app__body">
                 <NoteInput />
+                <h2>Catatan Aktif</h2>
                 {
                     this.state.notes.length
                         ?
-                        <>
-                            <h2>Catatan Aktif</h2>
-                            <NoteList
-                                notes={this.state.notes}
-                                onDelete={this.onDeleteHandler}
-                            />
-                        </>
+                        <NoteList
+                            notes={this.state.notes}
+                            onDelete={this.onDeleteHandler}
+                            onArchive={this.onArchiveHandler}
+                        />
                         :
                         <NoteListEmptyMessage />
                 }
+                <h2>Arsip</h2>
                 {
-                    this.state.notes.length
+                    this.state.archivedNotes.length
                         ?
-                        <>
-                            <h2>Arsip</h2>
-                            <NoteList
-                                notes={this.state.notes}
-                                onDelete={this.onDeleteHandler}
-                            />
-                        </>
+                        <NoteList
+                            notes={this.state.archivedNotes}
+                            onDelete={this.onDeleteHandler}
+                            onArchive={this.onArchiveHandler}
+                        />
                         :
                         <NoteListEmptyMessage />
                 }
