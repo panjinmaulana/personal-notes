@@ -4,7 +4,7 @@ import NoteForm from "./NoteForm";
 function NoteInput() {
     return (
         <div className="note-input">
-            <h2>Buat Catatan</h2>
+            <h2>Buat catatan</h2>
             <NoteForm />
         </div>
     );
