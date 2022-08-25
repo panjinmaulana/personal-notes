@@ -1,10 +1,10 @@
 import React from "react";
 
-function NoteForm({ onInputForm, OnSubmitForm, inputForm }) {
+function NoteForm({ onInputForm, OnSubmitForm, inputForm, limitCharTitle }) {
     return (
         <form onSubmit={OnSubmitForm}>
             <p className="note-input__title__char-limit">
-                Sisa karakter: 50
+                Sisa karakter: {limitCharTitle - inputForm.title.length}
             </p>
             <input
                 className="note-input__title"

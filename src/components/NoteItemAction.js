@@ -13,7 +13,7 @@ function NoteItemAction({ id, onDelete, onArchive, isArchived }) {
             />
             <NoteButtonAction
                 className={"note-item__archive-button"}
-                displayName={"Arsipkan"}
+                displayName={isArchived ? "Pindahkan" : "Arsipkan"}
                 id={id}
                 actionName={onArchive}
                 isArchived={isArchived}

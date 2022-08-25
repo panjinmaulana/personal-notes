@@ -14,8 +14,9 @@ class NoteApp extends React.Component {
                 title: '',
                 body: '',
                 archived: false,
-                createdAt: new Date(),
+                createdAt: new Date().toISOString(),
             },
+            limitCharTitle: 50,
         };
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
@@ -64,7 +65,10 @@ class NoteApp extends React.Component {
     onInputFormHandler(e) {
         const { name, value } = e.target;
 
-        const inputForm = { ...this.state.inputForm, [name]: value };
+        const inputForm = {
+            ...this.state.inputForm,
+            [name]: name === 'title' ? value.slice(0, this.state.limitCharTitle) : value,
+        };
 
         this.setState((previousState) => {
             return {
@@ -100,6 +104,7 @@ class NoteApp extends React.Component {
                     onInputForm={this.onInputFormHandler}
                     OnSubmitForm={this.onSubmitHandler}
                     inputForm={this.state.inputForm}
+                    limitCharTitle={this.state.limitCharTitle}
                 />
             </>
         );

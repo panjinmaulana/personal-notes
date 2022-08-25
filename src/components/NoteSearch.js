@@ -9,6 +9,7 @@ function NoteSearch({ onSearch }) {
                 autoFocus
                 autoComplete="off"
                 onChange={(e) => onSearch(e.target.value)}
+                maxLength={50}
             />
         </div>
     );

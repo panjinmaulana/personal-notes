@@ -1,7 +1,7 @@
 import React from "react";
 import NoteForm from "./NoteForm";
 
-function NoteInput({ onInputForm, OnSubmitForm, inputForm }) {
+function NoteInput({ onInputForm, OnSubmitForm, inputForm, limitCharTitle }) {
     return (
         <div className="note-input">
             <h2>Buat catatan</h2>
@@ -9,6 +9,7 @@ function NoteInput({ onInputForm, OnSubmitForm, inputForm }) {
                 onInputForm={onInputForm}
                 OnSubmitForm={OnSubmitForm}
                 inputForm={inputForm}
+                limitCharTitle={limitCharTitle}
             />
         </div>
     );
