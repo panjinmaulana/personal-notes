@@ -1,11 +1,15 @@
 import React from "react";
 import NoteForm from "./NoteForm";
 
-function NoteInput() {
+function NoteInput({ onInputForm, OnSubmitForm, inputForm }) {
     return (
         <div className="note-input">
             <h2>Buat catatan</h2>
-            <NoteForm />
+            <NoteForm
+                onInputForm={onInputForm}
+                OnSubmitForm={OnSubmitForm}
+                inputForm={inputForm}
+            />
         </div>
     );
 };

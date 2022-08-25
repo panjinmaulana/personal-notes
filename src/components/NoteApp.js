@@ -9,11 +9,20 @@ class NoteApp extends React.Component {
         this.state = {
             notes: getInitialData(),
             archivedNotes: [],
+            inputForm: {
+                id: +new Date(),
+                title: '',
+                body: '',
+                archived: false,
+                createdAt: new Date(),
+            },
         };
 
         this.onDeleteHandler = this.onDeleteHandler.bind(this);
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
         this.onSearchHandler = this.onSearchHandler.bind(this);
+        this.onSubmitHandler = this.onSubmitHandler.bind(this);
+        this.onInputFormHandler = this.onInputFormHandler.bind(this);
     };
 
     onDeleteHandler(id, isArchived) {
@@ -52,6 +61,31 @@ class NoteApp extends React.Component {
         this.setState({ notes: notesList });
     };
 
+    onInputFormHandler(e) {
+        const { name, value } = e.target;
+
+        const inputForm = { ...this.state.inputForm, [name]: value };
+
+        this.setState((previousState) => {
+            return {
+                ...previousState.inputForm, inputForm
+            };
+        });
+    };
+
+    onSubmitHandler(e) {
+        e.preventDefault();
+
+        this.setState((previousState) => {
+            return {
+                notes: [
+                    ...previousState.notes,
+                    this.state.inputForm,
+                ],
+            };
+        });
+    };
+
     render() {
         return (
             <>
@@ -63,6 +97,9 @@ class NoteApp extends React.Component {
                     archivedNotes={this.state.archivedNotes}
                     onDelete={this.onDeleteHandler}
                     onArchive={this.onArchiveHandler}
+                    onInputForm={this.onInputFormHandler}
+                    OnSubmitForm={this.onSubmitHandler}
+                    inputForm={this.state.inputForm}
                 />
             </>
         );

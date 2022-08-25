@@ -3,10 +3,14 @@ import NoteInput from "./NoteInput";
 import NoteList from "./NoteList";
 import NoteListEmptyMessage from "./NoteListEmptyMessage";
 
-function NoteBody({notes, archivedNotes, onDelete, onArchive}) {
+function NoteBody({ notes, archivedNotes, onDelete, onArchive, onInputForm, OnSubmitForm, inputForm }) {
     return (
         <div className="note-app__body">
-            <NoteInput />
+            <NoteInput
+                onInputForm={onInputForm}
+                OnSubmitForm={OnSubmitForm}
+                inputForm={inputForm}
+            />
             <h2>Catatan Aktif</h2>
             {
                 notes.length
