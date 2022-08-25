@@ -1,10 +1,10 @@
 import React from "react";
 
-function NoteButtonAction({ className, displayName, id, actionName }) {
+function NoteButtonAction({ className, displayName, id, actionName, isArchived }) {
     return (
         <button type="button"
             className={className}
-            onClick={() => actionName(id)}
+            onClick={() => actionName(id, isArchived)}
         >
             {displayName}
         </button>

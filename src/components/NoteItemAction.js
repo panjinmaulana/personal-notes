@@ -1,7 +1,7 @@
 import React from "react";
 import NoteButtonAction from "./NoteButtonAction";
 
-function NoteItemAction({ id, onDelete, onArchive }) {
+function NoteItemAction({ id, onDelete, onArchive, isArchived }) {
     return (
         <div className="note-item__action">
             <NoteButtonAction
@@ -9,12 +9,14 @@ function NoteItemAction({ id, onDelete, onArchive }) {
                 displayName={"Delete"}
                 id={id}
                 actionName={onDelete}
+                isArchived={isArchived}
             />
             <NoteButtonAction
                 className={"note-item__archive-button"}
                 displayName={"Arsipkan"}
                 id={id}
                 actionName={onArchive}
+                isArchived={isArchived}
             />
         </div>
     );

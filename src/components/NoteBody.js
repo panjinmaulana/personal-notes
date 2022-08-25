@@ -17,9 +17,14 @@ class NoteBody extends React.Component {
         this.onArchiveHandler = this.onArchiveHandler.bind(this);
     };
 
-    onDeleteHandler(id) {
-        const notes = this.state.notes.filter(note => note.id !== id);
-        this.setState({ notes });
+    onDeleteHandler(id, isArchived) {
+        if (isArchived) {
+            const archivedNotes = this.state.archivedNotes.filter(note => note.id !== id);
+            this.setState({ archivedNotes });
+        } else {
+            const notes = this.state.notes.filter(note => note.id !== id);
+            this.setState({ notes });
+        };
     };
 
     onArchiveHandler(id) {
@@ -34,7 +39,7 @@ class NoteBody extends React.Component {
                 archivedNotes: [...previousState.archivedNotes, ...archivedNotes],
             };
         });
-        
+
         this.onDeleteHandler(id);
     };
 
